@@ -3,14 +3,17 @@ import argparse
 import socket
 import sched, time
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-addr = ('localhost', 10110)
-
 parser = argparse.ArgumentParser(
     'python NMAE Player',
-    description='Replay a nmae logfile with timestamp to udp (localhost, 10110).')
-parser.add_argument('logfile', metavar='log-file', type=str, )
+    description='Replay a nmea logfile with timestamp to udp (default: localhost, 10110).')
+parser.add_argument('logfile', metavar='logfile', type=str)
+parser.add_argument('-address', metavar='address', type=str, default='localhost',
+                    help='UDP address (default localhost)')
+parser.add_argument('-port', metavar='port', type=int, default=1011, help='UDP port (default 1011)')
 results = parser.parse_args()
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+addr = (results.address, results.port)
 
 
 ##  17939076 <$GPRMC,135218.00,A,4703.84791,N,00654.17033,E,82.429,238.68,300706,,,A*50>
