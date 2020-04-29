@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument('logfile', metavar='logfile', type=str)
 parser.add_argument('-address', metavar='address', type=str, default='localhost',
                     help='UDP address (default localhost)')
-parser.add_argument('-port', metavar='port', type=int, default=1011, help='UDP port (default 1011)')
+parser.add_argument('-port', metavar='port', type=int, default=10110, help='UDP port (default 10110)')
 results = parser.parse_args()
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
