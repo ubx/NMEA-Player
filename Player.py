@@ -20,7 +20,10 @@ addr = (results.address, results.port)
 def toNMEA(line):
     parts = (' '.join(line.split()).split())
     ts = int(parts[0])
-    nmea = parts[1][1:-1]
+    if parts[1][0:1] == '<':
+       nmea = parts[1][1:-1]
+    else:
+       nmea = parts[1]
     return ts, nmea
 
 
