@@ -50,7 +50,7 @@ with open(log_file, "r") as logfile:
     for cnt, line in enumerate(logfile):
         ts, nmea, = toNMEA(line)
         assert ts > 0, 'Wrong time increment'
-        progress(cnt, num_lines, ts)
+        progress(cnt, num_lines, str(ts))
         if baseTime is None:
             baseTime = ts
         sched.enterabs(startTime + (float(ts - baseTime)) / 1000.0, 1, lambda x: send(x), (nmea,))
